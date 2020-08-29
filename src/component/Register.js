@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 export default class Register extends Component {
     render() {
+        // console.log(this.props);
         return (
             <form className='container bg-light rounded mt-2 p-2'>
                 <h3>Sign Up</h3>
@@ -26,7 +27,7 @@ export default class Register extends Component {
                     <input type="password" className="form-control" placeholder="Enter password" />
                 </div>
 
-                <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
+                <button type="button" className="btn btn-primary btn-block" onClick={() => this.props.registerUser({ email: 'test@gmai.com', password: "test" })}>Sign Up</button>
                 <p className="forgot-password text-right">
                     Already registered <a href="register">sign in?</a>
                 </p>
