@@ -22,12 +22,13 @@ class Posts extends Component {
     }
 
     handleDelete = (commentId) => {
+        if (!this.props.isLoggedIn) return alert('Un Authorized User');
         const comments = this.state.comments.filter(c => c.id !== commentId);
         console.log("filtered comments :", comments);
         this.setState({ comments });
     }
     render() {
-        console.log(this.state)
+        console.log(this.props)
         const post = this.state.post ? (
             <div>
                 <h4 className='text-center'>{this.state.post.title}</h4>

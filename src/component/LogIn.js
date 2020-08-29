@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import './login.css'
-import {NavLink} from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 export default class Login extends Component {
     render() {
         return (
-            <form  className='container bg-light rounded mt-2 p-2 '>
+            <form className='container bg-light rounded mt-2 p-2 '>
                 <h3>Sign In</h3>
 
                 <div className="form-group">
@@ -25,10 +25,10 @@ export default class Login extends Component {
                     </div>
                 </div>
 
-                <button type="submit" className="btn btn-primary btn-block">Submit</button>
-                  <button className='btn btn-primary m-2 p-2'><NavLink to='/register' className='text-light '>Registeration</NavLink></button>
+                <button type="button" className="btn btn-primary btn-block" onClick={() => this.props.loginUser({ email: 'test@gmai.com', password: "test" })}>Login</button>
+                <button className='btn btn-primary m-2 p-2'><NavLink to='/register' className='text-light '>Registeration</NavLink></button>
                 <p className="forgot-password text-right">
-                    
+
                     Forgot <a href="login">password?</a>
                 </p>
             </form>

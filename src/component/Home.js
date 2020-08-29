@@ -16,13 +16,14 @@ class Home extends Component {
         },
         postIndex: null,
     }
-
     handleDelete = (postId) => {
+        if (!this.props.isLoggedIn) return alert('Un Authorized User');
         const posts = this.state.posts.filter(c => c.id !== postId)
         this.setState({ posts })
     }
 
     addPost = (post) => {
+        if (!this.props.isLoggedIn) return alert('Un Authorized User');
         post.id = Math.random();
         const posts = [...this.state.posts, post]
         this.setState({ posts })
@@ -30,6 +31,7 @@ class Home extends Component {
 
     handleToggleModal = (post, index) => {
         if (post) {
+            if (!this.props.isLoggedIn) return alert('Un Authorized User');
             let singlePost = this.state.posts.find(p => p.id === post.id);
             this.setState(prevState => ({ ...prevState, isModalOpen: !this.state.isModalOpen, singlePost, postIndex: index }));
         } else {
@@ -39,6 +41,7 @@ class Home extends Component {
     }
 
     handleUpdate = () => {
+        if (!this.props.isLoggedIn) return alert('Un Authorized User');
         // console.log('asdklj');
         let posts = this.state.posts
         Axios.put(`https://jsonplaceholder.typicode.com/posts/${this.state.singlePost.id}`, { title: this.state.singlePost.title, body: this.state.singlePost.body })
@@ -67,9 +70,7 @@ class Home extends Component {
                 [key]: value
             }
         }))
-    }
-
-
+    };
     render() {
         console.log(this.props)
         const { posts, isModalOpen } = this.state
@@ -92,8 +93,7 @@ class Home extends Component {
         ) : (<p className='text-center text-capitalize bg-secondary text-light'>you have no posts</p>)
         return (
             <div className='container bg-warning rounded'>
-
-                <AddPost addPost={this.addPost} />
+                <AddPost addPost={this.addPost} {...this.props} />
                 {postsList}
             </div>
         );

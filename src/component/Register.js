@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 export default class Register extends Component {
     render() {
-        // console.log(this.props);
+        console.log(this.props);
         return (
             <form className='container bg-light rounded mt-2 p-2'>
                 <h3>Sign Up</h3>
