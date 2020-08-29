@@ -19,9 +19,9 @@ function App() {
     state.users.push(user);
     setState({ ...state });
   };
-  const loginUser = user => {
+  // const loginUser = user => {
 
-  }
+  // }
   const [state, setState] = useState(initState);
   return (
     <Router>

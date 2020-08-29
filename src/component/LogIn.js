@@ -3,19 +3,37 @@ import './login.css'
 import {NavLink} from 'react-router-dom'
 
 export default class Login extends Component {
+
+    state ={
+        user :{
+        email : '',
+        password : ''
+    }
+    }
+handleChange = (e)=>{
+
+    this.setState({ user: {...this.state.user},[e.target.name] : e.target.value})
+
+}
+
+handleSubmit =(e)=>{
+    e.preventDefault();
+    console.log(this.state)
+    
+}
     render() {
         return (
-            <form  className='container bg-light rounded mt-2 p-2 '>
+            <form  className='container bg-light rounded mt-2 p-2 ' onSubmit={this.handleSubmit} >
                 <h3>Sign In</h3>
 
                 <div className="form-group">
                     <label>Email address</label>
-                    <input type="email" className="form-control" placeholder="Enter email" />
+                    <input type="email" className="form-control" placeholder="Enter email"  name="email" onChange={this.handleChange}/>
                 </div>
 
                 <div className="form-group">
                     <label>Password</label>
-                    <input type="password" className="form-control" placeholder="Enter password" />
+                    <input type="password" className="form-control" placeholder="Enter password"  name="password" onChange={this.handleChange}/>
                 </div>
 
                 <div className="form-group">
