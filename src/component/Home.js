@@ -25,8 +25,10 @@ class Home extends Component {
     addPost = (post) => {
         if (!this.props.isLoggedIn) return alert('Un Authorized User');
         post.id = Math.random();
-        const posts = [...this.state.posts, post]
-        this.setState({ posts })
+        let P = this.state.posts;
+        P.unshift(post);
+        // const posts = [...this.state.posts, post]
+        this.setState({ posts: P })
     }
 
     handleToggleModal = (post, index) => {
@@ -83,7 +85,7 @@ class Home extends Component {
 
                             <p className='text-justify'>{post.body}</p></Link>
                         <button className='btn btn-danger btn-sm m-2 p-2' onClick={() => this.handleDelete(post.id)}>Delete Post</button>
-                        <button className='btn btn-danger btn-sm m-2 p-2' onClick={() => this.handleToggleModal(post, index)}>Edit Post</button>
+                        <button className='btn btn-primary btn-sm m-2 p-2' onClick={() => this.handleToggleModal(post, index)}>Edit Post</button>
                         {
                             isModalOpen &&
                             <Update onChangePost={this.onChangePost} handleUpdate={this.handleUpdate} parentState={this.state} isModalOpen={isModalOpen} handleToggleModal={this.handleToggleModal} />

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 // import './App.css'
 import Navbar from './component/Navbar';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -17,11 +17,13 @@ function App(props) {
     isLoggedIn: false,
     loggedInUser: {}
   };
+  const [state, setState] = useState(initState);
   const registerUser = user => {
     let findExistingUser = state.users.find(U => U.email === user.email);
     if (findExistingUser) return alert('User Already register');
     state.users.push(user);
     setState({ ...state });
+    localStorage.setItem("users", JSON.stringify(user));
     history.push("/login");
   };
   const loginUser = user => {
@@ -30,8 +32,13 @@ function App(props) {
     setState({ ...state, loggedInUser: user, isLoggedIn: true });
     history.push("/");
   }
-  // console.log('history :', history)
-  const [state, setState] = useState(initState);
+  useEffect(useCallback(() => {
+    let registeredUsers = localStorage.getItem("users");
+    if (!registeredUsers) return;
+    JSON.parse(registeredUsers)
+    setState({ ...state, users: [JSON.parse(registeredUsers)] });
+  }, []), [])
+  console.log('App State :', state)
   return (
     <div className="App-container">
       <Navbar />
