@@ -53,7 +53,7 @@ export default class Register extends Component {
                 </div>
 
                 <button type="button" className="btn btn-primary btn-block" onClick={() => this.props.registerUser(this.state.user)}>Sign Up</button>
-                <p className="forgot-password text-right">
+                 <p className="forgot-password text-right">
                     Already registered <a href="register">sign in?</a>
                 </p>
             </form>
